@@ -1,7 +1,7 @@
 <p align="center"><img src="/images/spring-logo.png" height="50"/><img src="/images/react-logo.svg" height="50"/><img src="/images/ionic-logo.svg" height="50"/></p>
 
-# proyectos-react-spring
-Proyectos de prueba del framework Spring con React
+# Proyectos Spring con React + Ionic
+Proyectos de prueba del framework Spring con React e Ionic
 
 ## Documentación oficial de Spring Framework:
 * https://spring.io
