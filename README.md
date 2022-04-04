@@ -19,6 +19,9 @@ siguiendo el tutorial: https://youtu.be/ca_pOK4jc7M
 ## Documentación oficial de React:
 * https://es.reactjs.org/
 
+## Documentación oficial de Ionic:
+* https://ionicframework.com/
+
 ## Otros tutoriales de interés:
 
 * https://www.tutofox.com/spring/crud-spring-boot-reactjs-api-rest-mysql-1-starter/
