@@ -1,7 +1,17 @@
 <p align="center"><img src="/images/spring-logo.png" height="50"/><img src="/images/react-logo.svg" height="50"/><img src="/images/ionic-logo.svg" height="50"/></p>
 
 # Proyectos Spring con React + Ionic
-Proyectos de prueba del framework Spring con React e Ionic
+Proyectos de prueba del framework Spring con React e Ionic.
+Se pretende conseguir las competencias necesarias para la realización de una aplicación web híbrida.
+Ionic nos permitirá la creación de la app tanto para Android como para IOS, a partir de la webapp original.
+
+
+## curso-react-ionic
+
+* Proyecto de prueba del framework Spring con React e Ionic
+siguiendo el tutorial: https://youtu.be/ca_pOK4jc7M
+
+
 
 ## Documentación oficial de Spring Framework:
 * https://spring.io
