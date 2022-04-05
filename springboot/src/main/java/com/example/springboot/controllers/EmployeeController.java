@@ -1,38 +1,39 @@
 package com.example.springboot.controllers;
 
-import com.example.springboot.entities.Customer;
-import com.example.springboot.services.ICustomerService;
+import com.example.springboot.entities.Employee;
+import com.example.springboot.services.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-public class CustomerController {
+public class EmployeeController {
 
     @Autowired
-    private ICustomerService service;
+    private IEmployeeService service;
 
 
-    @GetMapping("/api/customers")
-    public List<Customer> getAll(){
+    @GetMapping("/api/employees")
+    public List<Employee> getAll(){
 
         return service.getAll();
     }
 
-    @GetMapping("/api/customers/{id}")
-    public Customer getById(@PathVariable String id){
+    @GetMapping("/api/employee/{id}")
+    public Employee getById(@PathVariable String id){
 
         return service.getById(Long.parseLong(id));
     }
 
-    @DeleteMapping("/api/customers/{id}")
+    @DeleteMapping("/api/employee/{id}")
     public void remove(@PathVariable String id){
         service.remove(Long.parseLong(id));
     }
 
-    @PostMapping("/api/customers")
-    public void save(@RequestBody Customer customer){
-        service.save(customer);
+    @PostMapping("/api/employees")
+    public void save(@RequestBody Employee employee){
+        service.save(employee);
     }
 }
 

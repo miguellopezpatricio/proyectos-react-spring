@@ -14,7 +14,6 @@ import javax.persistence.*;
 @EqualsAndHashCode
 public class Customer {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

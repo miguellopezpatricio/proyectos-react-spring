@@ -8,14 +8,12 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name="supliers")
+@Table(name="suppliers")
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Suplier {
-
-
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
