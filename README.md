@@ -27,3 +27,9 @@ siguiendo el tutorial: https://youtu.be/ca_pOK4jc7M
 * https://www.tutofox.com/spring/crud-spring-boot-reactjs-api-rest-mysql-1-starter/
 * https://www.javaguides.net/2020/07/spring-boot-react-js-crud-example-tutorial-spring-boot-backend-part1.html
 * https://www.baeldung.com/spring-boot-react-crud
+
+## Docs:
+
+~	~	~
+/docs/Apuntes de Majo Ledesma: info sobre React 
+~	~	~
