@@ -3,14 +3,14 @@ import { add, pencil, trashBin } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ExploreContainer from '../../components/ExploreContainer';
-import Vendor from './Vendor';
-import { removeVendor, saveVendor, searchVendors } from './VendorApi';
+import Supplier from './Supplier';
+import { removeSupplier, saveSupplier, searchSuppliers } from './SupplierApi';
 
 
-const VendorList: React.FC = () => {
+const SupplierList: React.FC = () => {
 
     const { name } = useParams<{ name: string; }>();
-    const [proveedores, setproveedores] = useState<Vendor[]>([]);
+    const [proveedores, setproveedores] = useState<Supplier[]>([]);
     const history = useHistory();
 
     useEffect(() => {
@@ -19,14 +19,14 @@ const VendorList: React.FC = () => {
     }, [history.location.pathname]);
 
     const search = () => {
-        let result = searchVendors();
+        let result = searchSuppliers();
 
         setproveedores(result);
 
     }
 
     const remove = (id:string)=> {
-        removeVendor(id); // elimina el proveedor del localStorage
+        removeSupplier(id); // elimina el proveedor del localStorage
         search();// con esta función actualiza la vista de proveedores
 
     }
@@ -40,17 +40,17 @@ const VendorList: React.FC = () => {
             phone: '112233',
             address: 'c/SiempreViva,23'
         }
-        saveVendor(ejemplo);
+        saveSupplier(ejemplo);
     }
 */
-    const addVendor = () => {
-        history.push('/page/Vendor/new');
+    const addSupplier = () => {
+        history.push('/page/Supplier/new');
 
     }
 
 
-    const editVendor = (id:string) => {
-        history.push('/page/Vendor/' + id);
+    const editSupplier = (id:string) => {
+        history.push('/page/Supplier/' + id);
 
     }
 
@@ -69,7 +69,7 @@ const VendorList: React.FC = () => {
                 <IonCard>
                     <IonTitle>Gestión de proveedores</IonTitle>
                     <IonItem>
-                        <IonButton onClick={addVendor} color="primary" fill="solid" slot='end' size='default'>
+                        <IonButton onClick={addSupplier} color="primary" fill="solid" slot='end' size='default'>
                             <IonIcon icon={add} />Nuevo Proveedor</IonButton>
                     </IonItem>
                     <IonHeader collapse="condense">
@@ -88,16 +88,16 @@ const VendorList: React.FC = () => {
 
                         </IonRow>
 
-                        {proveedores.map((proveedor:Vendor) =>
+                        {proveedores.map((proveedor:Supplier) =>
 
                             <IonRow>
-                                <IonCol>{proveedor.firstname} {proveedor.lastname}</IonCol>
+                                <IonCol>{proveedor.name}</IonCol>
                                 <IonCol>{proveedor.email}</IonCol>
                                 <IonCol>{proveedor.phone}</IonCol>
                                 <IonCol>{proveedor.address}</IonCol>
                                 <IonCol>
                                     <IonButton color='primary' fill='clear'
-                                    onClick={()=> editVendor(String(proveedor.id))}>
+                                    onClick={()=> editSupplier(String(proveedor.id))}>
                                         <IonIcon icon={pencil} slot="icon-only" />
                                     </IonButton>
                                     <IonButton color='danger' fill='clear'
@@ -126,4 +126,4 @@ const VendorList: React.FC = () => {
     );
 };
 
-export default VendorList;
+export default SupplierList;
