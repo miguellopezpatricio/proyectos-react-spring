@@ -6,11 +6,11 @@ import Employee from './Employee';
 import { saveEmployee, searchEmployeeById, searchEmployees } from './EmployeeApi';
 
 
-const EmployeeEdit: React.FC = () => {
+const employeeEdit: React.FC = () => {
 
     const { name, id } = useParams<{ name: string; id: string; }>();
 
-    const [Employee, setEmployee] = useState<Employee>({});
+    const [employee, setemployee] = useState<Employee>({});
 
     const history = useHistory();
 
@@ -24,15 +24,15 @@ const EmployeeEdit: React.FC = () => {
         if(id!== 'new'){
 
             let result = searchEmployeeById(id);
-            setEmployee(result);
+            setemployee(result);
 
         }
 
     }
 
     const save = () => {
-        saveEmployee(Employee);
-        history.push('/page/Employees');
+        saveEmployee(employee);
+        history.push('/page/employees');
     }
 
 
@@ -54,8 +54,8 @@ const EmployeeEdit: React.FC = () => {
                      <IonCol>
                      <IonItem>
                         <IonLabel position="stacked">Nombre</IonLabel>
-                        <IonInput onIonChange={e => Employee.firstname = String(e.detail.value)} 
-                        value={Employee.firstname}> </IonInput>
+                        <IonInput onIonChange={e => employee.firstname = String(e.detail.value)} 
+                        value={employee.firstname}> </IonInput>
                     </IonItem>      
                     
                      </IonCol>
@@ -63,8 +63,8 @@ const EmployeeEdit: React.FC = () => {
                      <IonCol>
                      <IonItem>
                         <IonLabel position="stacked">Apellido</IonLabel>
-                        <IonInput onIonChange={e => Employee.lastname = String(e.detail.value)}  
-                        value={Employee.lastname}> </IonInput>
+                        <IonInput onIonChange={e => employee.lastname = String(e.detail.value)}  
+                        value={employee.lastname}> </IonInput>
                     </IonItem>  
                      </IonCol>
                  </IonRow>
@@ -75,16 +75,16 @@ const EmployeeEdit: React.FC = () => {
      
                    <IonItem>
                         <IonLabel position="stacked">Email</IonLabel>
-                        <IonInput onIonChange={e => Employee.email = String(e.detail.value)} 
-                         value={Employee.email}> </IonInput>
+                        <IonInput onIonChange={e => employee.email = String(e.detail.value)} 
+                         value={employee.email}> </IonInput>
                     </IonItem>
                    </IonCol>
 
                    <IonCol>
                    <IonItem>
                         <IonLabel position="stacked">Dirección</IonLabel>
-                        <IonInput onIonChange={e => Employee.address = String(e.detail.value)} 
-                         value={Employee.address}> </IonInput>
+                        <IonInput onIonChange={e => employee.address = String(e.detail.value)} 
+                         value={employee.address}> </IonInput>
                     </IonItem>
                
                    </IonCol>
@@ -93,12 +93,24 @@ const EmployeeEdit: React.FC = () => {
                    <IonCol>
                    <IonItem>
                         <IonLabel position="stacked">Teléfono</IonLabel>
-                        <IonInput onIonChange={e => Employee.phone = String(e.detail.value)} 
-                         value={Employee.phone}> </IonInput>
+                        <IonInput onIonChange={e => employee.phone = String(e.detail.value)} 
+                         value={employee.phone}> </IonInput>
                     </IonItem>
                
                    </IonCol>
                    </IonRow>
+
+                   <IonRow>
+                   <IonCol>
+                   <IonItem>
+                        <IonLabel position="stacked">Salario</IonLabel>
+                        <IonInput onIonChange={e => employee.salary = Number(e.detail.value)} 
+                         value={employee.salary}> </IonInput>
+                    </IonItem>
+               
+                   </IonCol>
+                   </IonRow>
+                  
                   
                    <IonCol>
                    <IonItem>
@@ -126,4 +138,4 @@ const EmployeeEdit: React.FC = () => {
     );
 };
 
-export default EmployeeEdit;
+export default employeeEdit;

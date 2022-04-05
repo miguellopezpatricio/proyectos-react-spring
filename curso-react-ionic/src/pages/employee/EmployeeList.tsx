@@ -84,6 +84,8 @@ const EmployeeList: React.FC = () => {
                             <IonCol>Email</IonCol>
                             <IonCol>Teléfono</IonCol>
                             <IonCol>Dirección</IonCol>
+                            <IonCol>Salario</IonCol>
+                            
                             <IonCol>Acciones</IonCol>
 
                         </IonRow>
@@ -95,6 +97,8 @@ const EmployeeList: React.FC = () => {
                                 <IonCol>{empleado.email}</IonCol>
                                 <IonCol>{empleado.phone}</IonCol>
                                 <IonCol>{empleado.address}</IonCol>
+                                <IonCol>{empleado.salary}</IonCol>
+                                
                                 <IonCol>
                                     <IonButton color='primary' fill='clear'
                                     onClick={()=> editEmployee(String(empleado.id))}>
