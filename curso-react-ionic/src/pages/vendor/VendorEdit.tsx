@@ -2,15 +2,15 @@ import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader,
 import { add, checkmark, documentsOutline, pencil, save, text, trashBin } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-import Employee from './Employee';
-import { saveEmployee, searchEmployeeById, searchEmployees } from './EmployeeApi';
+import Vendor from './Vendor';
+import { saveVendor, searchVendorById, searchVendors } from './VendorApi';
 
 
-const EmployeeEdit: React.FC = () => {
+const VendorEdit: React.FC = () => {
 
     const { name, id } = useParams<{ name: string; id: string; }>();
 
-    const [Employee, setEmployee] = useState<Employee>({});
+    const [Vendor, setVendor] = useState<Vendor>({});
 
     const history = useHistory();
 
@@ -23,16 +23,16 @@ const EmployeeEdit: React.FC = () => {
 
         if(id!== 'new'){
 
-            let result = searchEmployeeById(id);
-            setEmployee(result);
+            let result = searchVendorById(id);
+            setVendor(result);
 
         }
 
     }
 
     const save = () => {
-        saveEmployee(Employee);
-        history.push('/page/Employees');
+        saveVendor(Vendor);
+        history.push('/page/Vendors');
     }
 
 
@@ -54,8 +54,8 @@ const EmployeeEdit: React.FC = () => {
                      <IonCol>
                      <IonItem>
                         <IonLabel position="stacked">Nombre</IonLabel>
-                        <IonInput onIonChange={e => Employee.firstname = String(e.detail.value)} 
-                        value={Employee.firstname}> </IonInput>
+                        <IonInput onIonChange={e => Vendor.firstname = String(e.detail.value)} 
+                        value={Vendor.firstname}> </IonInput>
                     </IonItem>      
                     
                      </IonCol>
@@ -63,8 +63,8 @@ const EmployeeEdit: React.FC = () => {
                      <IonCol>
                      <IonItem>
                         <IonLabel position="stacked">Apellido</IonLabel>
-                        <IonInput onIonChange={e => Employee.lastname = String(e.detail.value)}  
-                        value={Employee.lastname}> </IonInput>
+                        <IonInput onIonChange={e => Vendor.lastname = String(e.detail.value)}  
+                        value={Vendor.lastname}> </IonInput>
                     </IonItem>  
                      </IonCol>
                  </IonRow>
@@ -75,16 +75,16 @@ const EmployeeEdit: React.FC = () => {
      
                    <IonItem>
                         <IonLabel position="stacked">Email</IonLabel>
-                        <IonInput onIonChange={e => Employee.email = String(e.detail.value)} 
-                         value={Employee.email}> </IonInput>
+                        <IonInput onIonChange={e => Vendor.email = String(e.detail.value)} 
+                         value={Vendor.email}> </IonInput>
                     </IonItem>
                    </IonCol>
 
                    <IonCol>
                    <IonItem>
                         <IonLabel position="stacked">Dirección</IonLabel>
-                        <IonInput onIonChange={e => Employee.address = String(e.detail.value)} 
-                         value={Employee.address}> </IonInput>
+                        <IonInput onIonChange={e => Vendor.address = String(e.detail.value)} 
+                         value={Vendor.address}> </IonInput>
                     </IonItem>
                
                    </IonCol>
@@ -93,8 +93,8 @@ const EmployeeEdit: React.FC = () => {
                    <IonCol>
                    <IonItem>
                         <IonLabel position="stacked">Teléfono</IonLabel>
-                        <IonInput onIonChange={e => Employee.phone = String(e.detail.value)} 
-                         value={Employee.phone}> </IonInput>
+                        <IonInput onIonChange={e => Vendor.phone = String(e.detail.value)} 
+                         value={Vendor.phone}> </IonInput>
                     </IonItem>
                
                    </IonCol>
@@ -126,4 +126,4 @@ const EmployeeEdit: React.FC = () => {
     );
 };
 
-export default EmployeeEdit;
+export default VendorEdit;

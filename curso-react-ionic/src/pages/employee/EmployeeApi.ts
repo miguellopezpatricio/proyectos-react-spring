@@ -1,16 +1,16 @@
-import Customer from "./Employee";
+import Employee from "./Employee";
 
-export function searchCustomers(){
+export function searchEmployees(){
 
-    if(!localStorage['customers']){
-        localStorage['customers']= '[]';
+    if(!localStorage['employees']){
+        localStorage['employees']= '[]';
     }
 
-    let customers = localStorage['customers'];
+    let employees = localStorage['employees'];
 
-    customers = JSON.parse(customers);
+    employees = JSON.parse(employees);
 
-    return customers;
+    return employees;
 
    /* const datosDeEjemplo = [
         {
@@ -32,40 +32,40 @@ export function searchCustomers(){
     ]; */
 }
 
-export function removeCustomer(id:string){
+export function removeEmployee(id:string){
 
-    let customers = searchCustomers();
+    let employees = searchEmployees();
 
-    let indice = customers.findIndex((customer:any) =>customer.id == id); // busca el dato en el array
-    customers.splice(indice, 1); // elimina el dato del array
-    localStorage['customers'] = JSON.stringify(customers);// actualiza el array
+    let indice = employees.findIndex((Employee:any) =>Employee.id == id); // busca el dato en el array
+    employees.splice(indice, 1); // elimina el dato del array
+    localStorage['employees'] = JSON.stringify(employees);// actualiza el array
 
 }
 
-export function saveCustomer(customer:Customer){
+export function saveEmployee(employee:Employee){
 
-    let customers = searchCustomers();
+    let employees = searchEmployees();
 
-    if(customer.id){
+    if(employee.id){
         // editar
-        let indice = customers.findIndex((c:Customer) =>c.id == customer.id); // busca el dato en el array
-        customers[indice] = customer;
+        let indice = employees.findIndex((c:Employee) =>c.id == employee.id); // busca el dato en el array
+        employees[indice] = employee;
     } else {
         // nuevo
-        customer.id = String(Math.round(Math.random()*10000));
-        customers.push(customer);
+        employee.id = String(Math.round(Math.random()*10000));
+        employees.push(employee);
     }
 
-    localStorage['customers'] = JSON.stringify(customers);
+    localStorage['employees'] = JSON.stringify(employees);
 
 }
 
 
 
-export function searchCustomerById(id: string){
+export function searchEmployeeById(id: string){
 
 
-    let customers = searchCustomers();
-    return customers.find((customer:any) => customer.id ==id);
+    let employees = searchEmployees();
+    return employees.find((employee:any) => employee.id ==id);
 
 }

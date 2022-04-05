@@ -3,14 +3,14 @@ import { add, pencil, trashBin } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ExploreContainer from '../../components/ExploreContainer';
-import Employee from './Employee';
-import { removeEmployee, saveEmployee, searchEmployees } from './EmployeeApi';
+import Vendor from './Vendor';
+import { removeVendor, saveVendor, searchVendors } from './VendorApi';
 
 
-const EmployeeList: React.FC = () => {
+const VendorList: React.FC = () => {
 
     const { name } = useParams<{ name: string; }>();
-    const [empleados, setempleados] = useState<Employee[]>([]);
+    const [proveedores, setproveedores] = useState<Vendor[]>([]);
     const history = useHistory();
 
     useEffect(() => {
@@ -19,15 +19,15 @@ const EmployeeList: React.FC = () => {
     }, [history.location.pathname]);
 
     const search = () => {
-        let result = searchEmployees();
+        let result = searchVendors();
 
-        setempleados(result);
+        setproveedores(result);
 
     }
 
     const remove = (id:string)=> {
-        removeEmployee(id); // elimina el empleado del localStorage
-        search();// con esta función actualiza la vista de empleados
+        removeVendor(id); // elimina el proveedor del localStorage
+        search();// con esta función actualiza la vista de proveedores
 
     }
 /*
@@ -40,17 +40,17 @@ const EmployeeList: React.FC = () => {
             phone: '112233',
             address: 'c/SiempreViva,23'
         }
-        saveEmployee(ejemplo);
+        saveVendor(ejemplo);
     }
 */
-    const addEmployee = () => {
-        history.push('/page/employee/new');
+    const addVendor = () => {
+        history.push('/page/Vendor/new');
 
     }
 
 
-    const editEmployee = (id:string) => {
-        history.push('/page/employee/' + id);
+    const editVendor = (id:string) => {
+        history.push('/page/Vendor/' + id);
 
     }
 
@@ -67,10 +67,10 @@ const EmployeeList: React.FC = () => {
 
             <IonContent>
                 <IonCard>
-                    <IonTitle>Gestión de Empleados</IonTitle>
+                    <IonTitle>Gestión de proveedores</IonTitle>
                     <IonItem>
-                        <IonButton onClick={addEmployee} color="primary" fill="solid" slot='end' size='default'>
-                            <IonIcon icon={add} />Nuevo Empleado</IonButton>
+                        <IonButton onClick={addVendor} color="primary" fill="solid" slot='end' size='default'>
+                            <IonIcon icon={add} />Nuevo Proveedor</IonButton>
                     </IonItem>
                     <IonHeader collapse="condense">
                         <IonToolbar>
@@ -88,20 +88,20 @@ const EmployeeList: React.FC = () => {
 
                         </IonRow>
 
-                        {empleados.map((empleado:Employee) =>
+                        {proveedores.map((proveedor:Vendor) =>
 
                             <IonRow>
-                                <IonCol>{empleado.firstname} {empleado.lastname}</IonCol>
-                                <IonCol>{empleado.email}</IonCol>
-                                <IonCol>{empleado.phone}</IonCol>
-                                <IonCol>{empleado.address}</IonCol>
+                                <IonCol>{proveedor.firstname} {proveedor.lastname}</IonCol>
+                                <IonCol>{proveedor.email}</IonCol>
+                                <IonCol>{proveedor.phone}</IonCol>
+                                <IonCol>{proveedor.address}</IonCol>
                                 <IonCol>
                                     <IonButton color='primary' fill='clear'
-                                    onClick={()=> editEmployee(String(empleado.id))}>
+                                    onClick={()=> editVendor(String(proveedor.id))}>
                                         <IonIcon icon={pencil} slot="icon-only" />
                                     </IonButton>
                                     <IonButton color='danger' fill='clear'
-                                    onClick={()=> remove(String(empleado.id))}>
+                                    onClick={()=> remove(String(proveedor.id))}>
                                         <IonIcon icon={trashBin} slot="icon-only" />
                                     </IonButton>
                                 </IonCol>
@@ -126,4 +126,4 @@ const EmployeeList: React.FC = () => {
     );
 };
 
-export default EmployeeList;
+export default VendorList;
