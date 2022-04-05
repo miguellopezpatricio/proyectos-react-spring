@@ -1,14 +1,16 @@
+import Customer from "./Customer";
+
 export function searchCustomers(){
 
-    if(!localStorage['customers']){
-        localStorage['customers']= '[]';
+    if(!localStorage['Customers']){
+        localStorage['Customers']= '[]';
     }
 
-    let customers = localStorage['customers'];
+    let Customers = localStorage['Customers'];
 
-    customers = JSON.parse(customers);
+    Customers = JSON.parse(Customers);
 
-    return customers;
+    return Customers;
 
    /* const datosDeEjemplo = [
         {
@@ -32,21 +34,38 @@ export function searchCustomers(){
 
 export function removeCustomer(id:string){
 
-    let customers = searchCustomers();
+    let Customers = searchCustomers();
 
-    let indice = customers.findIndex((customer:any) =>customer.id == id); // busca el dato en el array
-    customers.splice(indice, 1); // elimina el dato del array
-    localStorage['customers'] = JSON.stringify(customers);// actualiza el array
-
-}
-
-export function saveCustomer(customer:any){
-
-
-    let customers = searchCustomers();
-    customers.push(customer);
-    localStorage['customers'] = JSON.stringify(customers);
+    let indice = Customers.findIndex((Customer:any) =>Customer.id == id); // busca el dato en el array
+    Customers.splice(indice, 1); // elimina el dato del array
+    localStorage['Customers'] = JSON.stringify(Customers);// actualiza el array
 
 }
 
+export function saveCustomer(Customer:Customer){
 
+    let Customers = searchCustomers();
+
+    if(Customer.id){
+        // editar
+        let indice = Customers.findIndex((c:Customer) =>c.id == Customer.id); // busca el dato en el array
+        Customers[indice] = Customer;
+    } else {
+        // nuevo
+        Customer.id = String(Math.round(Math.random()*10000));
+        Customers.push(Customer);
+    }
+
+    localStorage['Customers'] = JSON.stringify(Customers);
+
+}
+
+
+
+export function searchCustomerById(id: string){
+
+
+    let Customers = searchCustomers();
+    return Customers.find((Customer:any) => Customer.id ==id);
+
+}

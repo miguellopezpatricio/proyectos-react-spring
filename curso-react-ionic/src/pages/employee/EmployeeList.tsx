@@ -3,8 +3,8 @@ import { add, pencil, trashBin } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ExploreContainer from '../../components/ExploreContainer';
-import Customer from './Customer';
-import { removeCustomer, saveCustomer, searchCustomers } from './CustomerApi';
+import Customer from './Employee';
+import { removeCustomer, saveCustomer, searchCustomers } from './EmployeeApi';
 
 
 const CustomerList: React.FC = () => {
