@@ -84,6 +84,8 @@ const SupplierList: React.FC = () => {
                             <IonCol>Email</IonCol>
                             <IonCol>Teléfono</IonCol>
                             <IonCol>Dirección</IonCol>
+                            <IonCol>Web</IonCol>
+                            
                             <IonCol>Acciones</IonCol>
 
                         </IonRow>
@@ -95,6 +97,8 @@ const SupplierList: React.FC = () => {
                                 <IonCol>{proveedor.email}</IonCol>
                                 <IonCol>{proveedor.phone}</IonCol>
                                 <IonCol>{proveedor.address}</IonCol>
+                                <IonCol>{proveedor.web}</IonCol>
+                                
                                 <IonCol>
                                     <IonButton color='primary' fill='clear'
                                     onClick={()=> editSupplier(String(proveedor.id))}>

@@ -49,7 +49,7 @@ const SupplierEdit: React.FC = () => {
 
             <IonContent>
                 <IonCard>
-                    <IonTitle> {id ==='new' ? 'Agregar cliente' : 'Editar cliente'}</IonTitle>
+                    <IonTitle> {id ==='new' ? 'Agregar proveedor' : 'Editar proveedor'}</IonTitle>
                  <IonRow>
                      <IonCol>
                      <IonItem>
@@ -100,6 +100,18 @@ const SupplierEdit: React.FC = () => {
                         <IonLabel position="stacked">Contacto</IonLabel>
                         <IonInput onIonChange={e => Supplier.contact = String(e.detail.value)} 
                          value={Supplier.contact}> </IonInput>
+                    </IonItem>
+               
+                   </IonCol>
+                   </IonRow>
+
+
+                   <IonRow>
+                   <IonCol>
+                   <IonItem>
+                        <IonLabel position="stacked">Web</IonLabel>
+                        <IonInput onIonChange={e => Supplier.web = String(e.detail.value)} 
+                         value={Supplier.web}> </IonInput>
                     </IonItem>
                
                    </IonCol>
