@@ -1,20 +1,38 @@
 package com.example.springboot.controllers;
 
 import com.example.springboot.entities.Customer;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
+import com.example.springboot.services.ICustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 public class CustomerController {
 
+    @Autowired
+    private ICustomerService service;
+
+
     @GetMapping("/api/customers")
     public List<Customer> getAll(){
-        List<Customer> customers = new ArrayList<>();
-        customers.add(new Customer());
-        return customers;
+
+        return service.getAll();
+    }
+
+    @GetMapping("/api/customers/{id}")
+    public Customer getById(@PathVariable String id){
+
+        return service.getById(Long.parseLong(id));
+    }
+
+    @DeleteMapping("/api/customers/{id}")
+    public void remove(@PathVariable String id){
+        service.remove(Long.parseLong(id));
+    }
+
+    @PostMapping("/api/customers")
+    public void save(@RequestBody Customer customer){
+        service.save(customer);
     }
 }
+

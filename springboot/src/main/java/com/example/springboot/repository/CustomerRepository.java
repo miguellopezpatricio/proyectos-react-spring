@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
 
-
-
+    Customer getById(Long id);
 }
