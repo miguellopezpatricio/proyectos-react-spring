@@ -31,5 +31,6 @@ siguiendo el tutorial: https://youtu.be/ca_pOK4jc7M
 ## Docs:
 
 ~~~
-/docs/Apuntes de Majo Ledesma: info sobre React 
+/docs/React-Notes-MajoLedesma.pdf
+/docs/React-hooks-MajoLedesma.pdf
 ~~~
