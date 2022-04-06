@@ -10,49 +10,32 @@ import { removeSupplier, saveSupplier, searchSuppliers } from './SupplierApi';
 const SupplierList: React.FC = () => {
 
     const { name } = useParams<{ name: string; }>();
-    const [proveedores, setproveedores] = useState<Supplier[]>([]);
+    const [proveedores, setProveedores] = useState<Supplier[]>([]);
     const history = useHistory();
-
+  
     useEffect(() => {
-        search();
-
+      search();
     }, [history.location.pathname]);
-
-    const search = () => {
-        let result = searchSuppliers();
-
-        setproveedores(result);
-
+  
+    const search = async () => {
+      let result = await searchSuppliers();
+      setProveedores(result);
     }
-
-    const remove = (id:string)=> {
-        removeSupplier(id); // elimina el proveedor del localStorage
-        search();// con esta función actualiza la vista de proveedores
-
+  
+    const remove = async (id: string) => {
+      await removeSupplier(id);
+      search();
     }
-/*
-    const pruebaLocalStorage = () =>{
-        const ejemplo = {
-            id: '1',
-            firstname: 'Lucas',
-            lastname: 'Pérez',
-            email: 'lucas@mail.com',
-            phone: '112233',
-            address: 'c/SiempreViva,23'
-        }
-        saveSupplier(ejemplo);
+  
+    const addsuppliers = () => {
+      history.push('/page/supplier/new');
     }
-*/
-    const addSupplier = () => {
-        history.push('/page/Supplier/new');
-
+  
+    const editsuppliers = (id: string) => {
+      history.push('/page/supplier/' + id);
     }
-
-
-    const editSupplier = (id:string) => {
-        history.push('/page/Supplier/' + id);
-
-    }
+  
+  
 
     return (
         <IonPage>
@@ -69,7 +52,7 @@ const SupplierList: React.FC = () => {
                 <IonCard>
                     <IonTitle>Gestión de proveedores</IonTitle>
                     <IonItem>
-                        <IonButton onClick={addSupplier} color="primary" fill="solid" slot='end' size='default'>
+                        <IonButton onClick={addsuppliers} color="primary" fill="solid" slot='end' size='default'>
                             <IonIcon icon={add} />Nuevo Proveedor</IonButton>
                     </IonItem>
                     <IonHeader collapse="condense">
@@ -101,7 +84,7 @@ const SupplierList: React.FC = () => {
                                 
                                 <IonCol>
                                     <IonButton color='primary' fill='clear'
-                                    onClick={()=> editSupplier(String(proveedor.id))}>
+                                    onClick={()=> editsuppliers(String(proveedor.id))}>
                                         <IonIcon icon={pencil} slot="icon-only" />
                                     </IonButton>
                                     <IonButton color='danger' fill='clear'

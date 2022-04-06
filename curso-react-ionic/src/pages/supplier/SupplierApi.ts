@@ -1,16 +1,18 @@
 import Supplier from "./Supplier";
 
-export function searchSuppliers(){
+export async function searchSuppliers(){
 
-    if(!localStorage['Suppliers']){
-        localStorage['Suppliers']= '[]';
-    }
+   
+    let url = process.env.REACT_APP_API + 'suppliers';
 
-    let Suppliers = localStorage['Suppliers'];
+    let response = await fetch('http://localhost:8080/api/suppliers',{
+        "method":'GET',
+        "headers":{
+            "Content-Type":'application/json'
+        }
 
-    Suppliers = JSON.parse(Suppliers);
-
-    return Suppliers;
+    })
+    return await response.json();
 
    /* const datosDeEjemplo = [
         {
@@ -32,40 +34,47 @@ export function searchSuppliers(){
     ]; */
 }
 
-export function removeSupplier(id:string){
+export async function removeSupplier(id:string){
 
-    let Suppliers = searchSuppliers();
+    let url = process.env.REACT_APP_API + 'suppliers/';
 
-    let indice = Suppliers.findIndex((Supplier:any) =>Supplier.id == id); // busca el dato en el array
-    Suppliers.splice(indice, 1); // elimina el dato del array
-    localStorage['Suppliers'] = JSON.stringify(Suppliers);// actualiza el array
+    await fetch('http://localhost:8080/api/suppliers/' + id,{
+        "method":'DELETE',
+        "headers":{
+            "Content-Type":'application/json'
+        }
 
-}
-
-export function saveSupplier(Supplier:Supplier){
-
-    let Suppliers = searchSuppliers();
-
-    if(Supplier.id){
-        // editar
-        let indice = Suppliers.findIndex((c:Supplier) =>c.id == Supplier.id); // busca el dato en el array
-        Suppliers[indice] = Supplier;
-    } else {
-        // nuevo
-        Supplier.id = String(Math.round(Math.random()*10000));
-        Suppliers.push(Supplier);
-    }
-
-    localStorage['Suppliers'] = JSON.stringify(Suppliers);
+    })
 
 }
 
+export async function saveSupplier(supplier:Supplier){
 
 
-export function searchSupplierById(id: string){
+
+    let url = process.env.REACT_APP_API + 'suppliers';
+
+        await fetch('http://localhost:8080/api/suppliers',{
+        "method":'POST',
+        "body":JSON.stringify(supplier),
+        "headers":{
+            "Content-Type":'application/json'
+        }
+
+    })
+}
 
 
-    let Suppliers = searchSuppliers();
-    return Suppliers.find((Supplier:any) => Supplier.id ==id);
+
+export async function searchSupplierById(id: string){
+
+
+    let response = await fetch('http://localhost:8080/api/suppliers/' + id,{
+        "method":'GET',
+        "headers":{
+            "Content-Type": 'application/json'
+        }
+    })
+    return await response.json();
 
 }
