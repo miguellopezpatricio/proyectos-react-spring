@@ -3,3 +3,5 @@
 # dependencies
 /node_modules
 /android/node_modules
+/src/.env
+/src/.env.production
