@@ -1,16 +1,18 @@
 import Employee from "./Employee";
 
-export function searchEmployees(){
+export async function searchEmployees(){
 
-    if(!localStorage['employees']){
-        localStorage['employees']= '[]';
-    }
+    let url = process.env.REACT_APP_API + 'employees';
 
-    let employees = localStorage['employees'];
+    let response = await fetch('http://localhost:8080/api/employees',{
+        "method":'GET',
+        "headers":{
+            "Content-Type":'application/json'
+        }
 
-    employees = JSON.parse(employees);
+    })
 
-    return employees;
+    return await response.json();
 
    /* const datosDeEjemplo = [
         {
@@ -32,40 +34,45 @@ export function searchEmployees(){
     ]; */
 }
 
-export function removeEmployee(id:string){
+export async function removeEmployee(id:string){
 
-    let employees = searchEmployees();
+   
+    
+    let url = process.env.REACT_APP_API + 'employees/';
 
-    let indice = employees.findIndex((Employee:any) =>Employee.id == id); // busca el dato en el array
-    employees.splice(indice, 1); // elimina el dato del array
-    localStorage['employees'] = JSON.stringify(employees);// actualiza el array
+    await fetch('http://localhost:8080/api/employees/' + id,{
+        "method":'DELETE',
+        "headers":{
+            "Content-Type":'application/json'
+        }
+
+    })
+}
+
+export async function saveEmployee(employee:Employee){
+
+    let url = process.env.REACT_APP_API + 'employees';
+
+        await fetch('http://localhost:8080/api/employees',{
+        "method":'POST',
+        "body":JSON.stringify(employee),
+        "headers":{
+            "Content-Type":'application/json'
+        }
+
+    })
 
 }
 
-export function saveEmployee(employee:Employee){
-
-    let employees = searchEmployees();
-
-    if(employee.id){
-        // editar
-        let indice = employees.findIndex((c:Employee) =>c.id == employee.id); // busca el dato en el array
-        employees[indice] = employee;
-    } else {
-        // nuevo
-        employee.id = String(Math.round(Math.random()*10000));
-        employees.push(employee);
-    }
-
-    localStorage['employees'] = JSON.stringify(employees);
-
-}
 
 
+export async function searchEmployeeById(id: string){
 
-export function searchEmployeeById(id: string){
-
-
-    let employees = searchEmployees();
-    return employees.find((employee:any) => employee.id ==id);
-
+    let response = await fetch('http://localhost:8080/api/employees/' + id,{
+        "method":'GET',
+        "headers":{
+            "Content-Type": 'application/json'
+        }
+    })
+    return await response.json();
 }

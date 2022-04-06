@@ -1,6 +1,23 @@
 import Customer from "./Customer";
 
-export function searchCustomers(){
+export async function searchCustomers(){
+
+    let url = process.env.REACT_APP_API + 'customers';
+
+    let response = await fetch('http://localhost:8080/api/customers',{
+        "method":'GET',
+        "headers":{
+            "Content-Type":'application/json'
+        }
+
+    })
+
+    return await response.json();
+
+
+
+/*
+// PRUEBA INICIAL CON DATOS EN localStorage
 
     if(!localStorage['Customers']){
         localStorage['Customers']= '[]';
@@ -11,7 +28,7 @@ export function searchCustomers(){
     Customers = JSON.parse(Customers);
 
     return Customers;
-
+*/
    /* const datosDeEjemplo = [
         {
             id: '1',
@@ -32,40 +49,76 @@ export function searchCustomers(){
     ]; */
 }
 
-export function removeCustomer(id:string){
+export async function removeCustomer(id:string){
 
-    let Customers = searchCustomers();
+  
+    let url = process.env.REACT_APP_API + 'customers/';
 
-    let indice = Customers.findIndex((Customer:any) =>Customer.id == id); // busca el dato en el array
-    Customers.splice(indice, 1); // elimina el dato del array
-    localStorage['Customers'] = JSON.stringify(Customers);// actualiza el array
+    await fetch('http://localhost:8080/api/customers/' + id,{
+        "method":'DELETE',
+        "headers":{
+            "Content-Type":'application/json'
+        }
 
+    })
+
+  
+  
+  
+  /*  let customers = await searchCustomers();
+
+    let indice = customers.findIndex((customer:Customer) =>customer.id === id); // busca el dato en el array
+    customers.splice(indice, 1); // elimina el dato del array
+    localStorage['customers'] = JSON.stringify(customers);// actualiza el array
+*/
 }
 
-export function saveCustomer(Customer:Customer){
+export async function saveCustomer(customer:Customer){
 
-    let Customers = searchCustomers();
 
-    if(Customer.id){
+
+    let url = process.env.REACT_APP_API + 'customers';
+
+        await fetch('http://localhost:8080/api/customers',{
+        "method":'POST',
+        "body":JSON.stringify(customer),
+        "headers":{
+            "Content-Type":'application/json'
+        }
+
+    })
+
+ 
+
+
+    /*
+    let customers = await searchCustomers();
+
+    if(customer.id){
         // editar
-        let indice = Customers.findIndex((c:Customer) =>c.id == Customer.id); // busca el dato en el array
-        Customers[indice] = Customer;
+        let indice = customers.findIndex((c:Customer) =>c.id === customer.id); // busca el dato en el array
+        customers[indice] = customer;
     } else {
         // nuevo
-        Customer.id = String(Math.round(Math.random()*10000));
-        Customers.push(Customer);
+        customer.id = String(Math.round(Math.random()*10000));
+        customers.push(customer);
     }
 
-    localStorage['Customers'] = JSON.stringify(Customers);
-
-}
-
-
-
-export function searchCustomerById(id: string){
+    localStorage['customers'] = JSON.stringify(customers);
+*/
+} 
 
 
-    let Customers = searchCustomers();
-    return Customers.find((Customer:any) => Customer.id ==id);
+
+export async function searchCustomerById(id: string){
+
+
+    let response = await fetch('http://localhost:8080/api/customers/' + id,{
+        "method":'GET',
+        "headers":{
+            "Content-Type": 'application/json'
+        }
+    })
+    return await response.json();
 
 }

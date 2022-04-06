@@ -18,15 +18,15 @@ const EmployeeList: React.FC = () => {
 
     }, [history.location.pathname]);
 
-    const search = () => {
-        let result = searchEmployees();
+    const search =  async () => {
+        let result = await searchEmployees();
 
-        setempleados(result);
+         setempleados(result);
 
     }
 
-    const remove = (id:string)=> {
-        removeEmployee(id); // elimina el empleado del localStorage
+    const remove = async (id:string)=> {
+       await removeEmployee(id); // elimina el empleado del localStorage
         search();// con esta función actualiza la vista de empleados
 
     }

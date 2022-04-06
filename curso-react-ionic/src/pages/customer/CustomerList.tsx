@@ -1,58 +1,40 @@
 import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { add, pencil, trashBin } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams, useRouteMatch } from 'react-router';
 import ExploreContainer from '../../components/ExploreContainer';
 import Customer from './Customer';
 import { removeCustomer, saveCustomer, searchCustomers } from './CustomerApi';
 
 
 const CustomerList: React.FC = () => {
-
     const { name } = useParams<{ name: string; }>();
     const [clientes, setClientes] = useState<Customer[]>([]);
     const history = useHistory();
-
+  
     useEffect(() => {
-        search();
-
+      search();
     }, [history.location.pathname]);
-
-    const search = () => {
-        let result = searchCustomers();
-
-        setClientes(result);
-
+  
+    const search = async () => {
+      let result = await searchCustomers();
+      setClientes(result);
     }
-
-    const remove = (id:string)=> {
-        removeCustomer(id); // elimina el cliente del localStorage
-        search();// con esta función actualiza la vista de clientes
-
+  
+    const remove = async (id: string) => {
+      await removeCustomer(id);
+      search();
     }
-/*
-    const pruebaLocalStorage = () =>{
-        const ejemplo = {
-            id: '1',
-            firstname: 'Lucas',
-            lastname: 'Pérez',
-            email: 'lucas@mail.com',
-            phone: '112233',
-            address: 'c/SiempreViva,23'
-        }
-        saveCustomer(ejemplo);
-    }
-*/
+  
     const addCustomer = () => {
-        history.push('/page/customer/new');
-
+      history.push('/page/customer/new');
     }
-
-
-    const editCustomer = (id:string) => {
-        history.push('/page/customer/' + id);
-
+  
+    const editCustomer = (id: string) => {
+      history.push('/page/customer/' + id);
     }
+  
+  
 
     return (
         <IonPage>
